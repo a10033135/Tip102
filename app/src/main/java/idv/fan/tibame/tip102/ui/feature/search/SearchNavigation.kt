@@ -4,13 +4,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 
-val SEARCH_NAVIGATION_KEY = "search"
+val SEARCH_NAVIGATION_ROUTE = "search"
 
-fun genSearchNavigationRoute() = SEARCH_NAVIGATION_KEY
+fun genSearchNavigationRoute() = SEARCH_NAVIGATION_ROUTE
 
 fun NavGraphBuilder.searchScreenRoute(navController: NavHostController) {
     composable(
-        route = SEARCH_NAVIGATION_KEY,
+        route = SEARCH_NAVIGATION_ROUTE,
     ) {
         SearchRoute(navController = navController)
     }

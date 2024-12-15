@@ -2,6 +2,8 @@ package idv.fan.tibame.tip102.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+
+// todo 0-1 宣告專案使用的顏色
 object TipColor {
     val Purple80 = Color(0xFFD0BCFF)
     val PurpleGrey80 = Color(0xFFCCC2DC)
