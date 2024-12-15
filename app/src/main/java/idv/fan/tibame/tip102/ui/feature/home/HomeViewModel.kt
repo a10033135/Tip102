@@ -11,7 +11,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 
-// todo 2-3 宣告 HomeViewModel
+/**
+ * todo 2-3 宣告 HomeViewModel
+ * 討論：
+ * (1) 為什麼要 ViewModel
+ * (2) ViewModel 要做什麼事情，有哪些資料應該放到 ViewModel
+ * */
 class HomeViewModel : ViewModel() {
 
     private val _items = MutableStateFlow<List<TipHomeItemUiState>>(listOf())

@@ -1,21 +1,50 @@
 package idv.fan.tibame.tip102.ui.feature
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import idv.fan.tibame.tip102.TipTopLevelDestination
 import idv.fan.tibame.tip102.ui.feature.detail.DETAIL_NAVIGATION_ROUTE
 import idv.fan.tibame.tip102.ui.feature.home.HOME_NAVIGATION_ROUTE
+import idv.fan.tibame.tip102.ui.feature.home.genHomeNavigationRoute
 import idv.fan.tibame.tip102.ui.feature.search.SEARCH_NAVIGATION_ROUTE
+import idv.fan.tibame.tip102.ui.feature.search.genSearchNavigationRoute
 
 
 /**
- * todo 1-3 宣告 AppState 是處理 NavHostController 的類別
+ * todo 1-2 將 BottomBar 的 icon 宣告出來
+ * 列出 BottomBar 會出現的 icon
+ * @param icon icon
+ * @param iconText icon下方的文字
+ * @param route 點擊後要導向的路徑/畫面
+ * */
+enum class TipTopLevelDestination(
+    val icon: ImageVector,
+    val iconText: String,
+    val route: String
+) {
+    HOME(
+        icon = Icons.Filled.Home,
+        iconText = "首頁",
+        route = genHomeNavigationRoute()
+    ),
+    SEARCH(
+        icon = Icons.Filled.Search,
+        iconText = "搜尋",
+        route = genSearchNavigationRoute()
+    ),
+}
+
+/**
+ * todo 1-2 宣告 AppState 是處理 NavHostController 的類別
  * */
 @Stable
 class TipAppState(
-    val navController: NavHostController
+    private val navController: NavHostController
 ) {
 
     /**

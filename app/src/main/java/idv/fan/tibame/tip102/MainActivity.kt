@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +30,7 @@ import idv.fan.tibame.tip102.ui.feature.home.genHomeNavigationRoute
 import idv.fan.tibame.tip102.ui.feature.home.homeScreenRoute
 import idv.fan.tibame.tip102.ui.feature.search.genSearchNavigationRoute
 import idv.fan.tibame.tip102.ui.feature.search.searchScreenRoute
+import idv.fan.tibame.tip102.ui.theme.TipColor
 import idv.fan.tibame.tip102.ui.widget.TipBottomBarIcon
 
 
@@ -37,35 +40,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             /**
-             * todo 0-0 一切從這裡開始，整個 APP 的起點
+             * todo 0-0 一切從這裡開始，整個 APP 的起點，帶同學瀏覽整個專案(1) TipApp / Feature / Theme / Widget
              * */
             TipApp()
         }
     }
-}
-
-/**
- * todo 1-1 將 BottomBar 的 icon 宣告出來
- * 列出 BottomBar 會出現的 icon
- * @param icon icon
- * @param iconText icon下方的文字
- * @param route 點擊後要導向的路徑/畫面
- * */
-enum class TipTopLevelDestination(
-    val icon: ImageVector,
-    val iconText: String,
-    val route: String
-) {
-    HOME(
-        icon = Icons.Filled.Home,
-        iconText = "首頁",
-        route = genHomeNavigationRoute()
-    ),
-    SEARCH(
-        icon = Icons.Filled.Search,
-        iconText = "搜尋",
-        route = genSearchNavigationRoute()
-    ),
 }
 
 /**
@@ -79,16 +58,25 @@ fun TipApp(
     // todo 1-2 先宣告一個完整頁面，包含 BottomBar / NavHost
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-
-            // todo 1-3 如果目前的路徑是 HOME 或 SEARCH，就顯示 BottomBar
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+        ) {
+            // todo 1-3 將 NavHost 放在 Scaffold Content 裡
+            TipNavHost(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                navController = navController
+            )
+            // todo 1-4 顯示所有 BottomIcon ，如果目前的路徑是 HOME 或 SEARCH，就顯示 BottomBar
             if (appState.isShowBottomBar) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    // todo 1-4 將 BottomBar 的 icon 顯示出來
                     appState.tipTopLevelDestinations.forEach {
                         TipBottomBarIcon(
                             modifier = Modifier
@@ -103,15 +91,8 @@ fun TipApp(
                 }
             }
         }
-    ) { innerPadding ->
 
-        // todo 1-5 將 NavHost 放在 Scaffold Content 裡
-        TipNavHost(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            navController = navController
-        )
+
     }
 }
 

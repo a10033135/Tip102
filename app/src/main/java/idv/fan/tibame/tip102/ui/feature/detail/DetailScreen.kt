@@ -25,16 +25,11 @@ fun PreviewDetailScreen() {
 
 @Composable
 fun DetailScreen(title: String) {
-    Scaffold { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+    Column(modifier = Modifier) {
 
-            Text(
-                text = title,
-            )
-
-        }
-
+        Text(
+            text = title,
+        )
 
     }
-
 }

@@ -35,9 +35,7 @@ fun HomeRoute(
 
     HomeScreen(
         items = items,
-        onDetailClick = { title ->
-            navController.navigate(genDetailNavigationRoute(title))
-        },
+        onDetailClick = { title -> navController.navigate(genDetailNavigationRoute(title)) },
         onGetApiClick = homeViewModel::getApiData,
     )
 }
@@ -57,7 +55,7 @@ fun HomeScreen(
     Column {
         Text(
             modifier = Modifier
-                .background(TipColor.Pink40)
+                .background(TipColor.Pink80)
                 .padding(12.dp)
                 .clickable(onClick = onGetApiClick),
             text = "取得資料"
